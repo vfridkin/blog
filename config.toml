@@ -1,0 +1,64 @@
+baseurl         = "/"
+theme = "hugo-casper-two"
+languageCode    = "en-US"
+disqusShortname = ""
+paginate        = 6
+#SectionPagesMenu = "main"
+canonifyurls    = true
+enableEmoji = true
+
+[params]
+  title       = "Vlad"
+  subtitle    = "Journeys with data"
+  copyright   = "© 2018"
+
+  cover       = "img/blog-cover2.jpg"
+  description = "It started with the Melbourne datathon 2018."
+  metaDescription = ""
+  googleAnalytics = "vladislavfridkin@gmail.com"
+  customCSS = []
+  RSSLink = ""
+
+  twitterName = ""
+  fbName = ""
+  githubName = "vfridkin"
+  linkedinName = "vfridkin"
+  mediumName = ""
+
+  logo = "DatastarsGoldLogo.png"
+  orgName = ""
+  orgWebsite = ""
+  orgDescription = ""
+
+  showSupport = true
+
+  author = "VF"
+  authorAvatar = "img/ghost-icon.png"
+  authorLocation = ""
+  authorWebsite = ""
+  authorDescription = ""
+
+  pageNotFoundTitle = "404 - Page not found"
+
+  #casper or caspertwo
+  singleViewStyle = "casper"
+
+[permalinks]
+  post = "/post/:slug/"
+
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 200
+
+#[[menu.main]]
+#  name = "Categories"
+#  url = "/categories/"
+#  weight = 99
+
+#[[menu.main]]
+#  name = "External"
+#  url = "https://google.com/"
+#  weight = 95
+
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]

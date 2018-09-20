@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>/</link>
+    <description>Recent content on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 19 Sep 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>All aboard</title>
+      <link>/post/all-aboard/</link>
+      <pubDate>Wed, 19 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/all-aboard/</guid>
+      <description>Fleep is the new tinder for data scientists. After some online speed dataing a team was born. I showed my wife a list of names we&amp;rsquo;d come up with. The result of the vote is at the end of this post. Sorry Fleep, once we got serious it was time for Slack where we set up a channel called let&amp;rsquo;s do for voting using emojis. It&amp;rsquo;s a good way to keep trigger happy channel creators under control 😊.</description>
+    </item>
+    
+    <item>
+      <title>About me</title>
+      <link>/about/</link>
+      <pubDate>Wed, 19 Sep 2018 15:54:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>I&amp;rsquo;m a competitor in this year&amp;rsquo;s (2018) Melbourne Datathon in a team of five. We&amp;rsquo;re called the Mathemagicians and are a mixed bunch of students and professionals.</description>
+    </item>
+    
+  </channel>
+</rss>

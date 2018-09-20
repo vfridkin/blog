@@ -8,8 +8,8 @@ canonifyurls    = true
 enableEmoji = true
 
 [params]
-  title       = "Mathemagicians"
-  subtitle    = "Journeys with data"
+  title       = "Journeys with data"
+  subtitle    = "Melbourne datathon 2018"
   copyright   = "© 2018"
 
   cover       = "img/blog-cover2.jpg"

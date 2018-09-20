@@ -1,4 +1,4 @@
-baseurl         = "/"
+baseurl         = "https://vladblog.netlify.com/"
 theme = "hugo-casper-two"
 languageCode    = "en-US"
 disqusShortname = ""

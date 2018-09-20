@@ -8,7 +8,7 @@ canonifyurls    = true
 enableEmoji = true
 
 [params]
-  title       = "Vlad"
+  title       = "Mathemagicians"
   subtitle    = "Journeys with data"
   copyright   = "© 2018"
 
@@ -25,7 +25,7 @@ enableEmoji = true
   linkedinName = "vfridkin"
   mediumName = ""
 
-  logo = "DatastarsGoldLogo.png"
+  logo = "" #DatastarsGoldLogo.png"
   orgName = ""
   orgWebsite = ""
   orgDescription = ""

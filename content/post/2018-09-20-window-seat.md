@@ -1,8 +1,10 @@
 ---
-title: Window seat
+title: 02 Window seat
 author: Vlad Fridkin
 date: '2018-09-20'
 slug: window-seat
+next: 
+prev: all-aboard
 categories: []
 tags: []
 image: img/window_seat/window_seat.jpg

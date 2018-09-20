@@ -15,7 +15,7 @@ enableEmoji = true
   cover       = "img/blog-cover2.jpg"
   description = "It started with the Melbourne datathon 2018."
   metaDescription = ""
-  googleAnalytics = "vladislavfridkin@gmail.com"
+  googleAnalytics = "UA-126104900-1"
   customCSS = []
   RSSLink = ""
 

@@ -1,0 +1,75 @@
+---
+title: 03 Next stop Data2App
+author: Vlad Fridkin
+date: '2018-09-21'
+slug: 03-next-stop-data2app
+categories: []
+tags: []
+image: img/180921_next_stop_data2app/post_data2app.jpg
+authorAvatar: img/vlad.png
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+Freebies are tempting.  We considered using the free for a limited time Tableau.  In my opinion though, R Shiny has three things that shone through
+
+- wealth of community packages
+- free for an unlimited time
+- requires knowledge of R and coding
+
+Perhaps some people think the last point is a drawback - horses for courses.  There's a more in depth comparison on [homeagency](https://www.homeagency.co.uk/blog/data/battle-of-the-dashboards/)
+
+This was our first version on [shinyapps.io](shinyapps.io) 
+
+![](/img/180921_next_stop_data2app/first_version.JPG)
+
+The slider moved automatically and heat map moved around Melbourne.  It didn't matter that the timezone was wrong, that the heatmap only represented stops and not passenger volumes or that the largest volume stops were missing.  It demonstrated that we could do a map with a slider.
+
+Shinyapp.io is great, it has 25 hours free per month.  The problem is when you want to have a backend database.  The options are to either SSH from your app to another cloud server with a database, or use SQLlite.  One of the goals for the competition was scalability, and so we decided to use our own shiny server on AWS.
+
+Aditia was our Amazon Web Services mathemagician.  He set up shiny server and registered the web site name [mathemagicians.win](http://mathemagicians.win) for our Data2App.  That's positive thinking! 
+
+Our design mathemagician Septi used Adobe XD to design a clickable wireframe.
+
+![](/img/180921_next_stop_data2app/septi_design.JPG)
+
+The main reasons for the wireframe 
+
+- to validate our ideas
+- to quickly build a prototype
+
+Septi did a version without a map as well, both versions were interactive with drop down and map click ability - and took him a single night (in Reykjavik).  
+
+Immediately we wanted to start showing potential customers to get their feedback.  That experience is for another post.  
+
+_Ideas are cheap, execution is everything_ and you can see that in the first implementation in the working app which didn't look as nice as the design.
+
+![](/img/180921_next_stop_data2app/version2.JPG)
+
+The next version had bubbles representing the volume of touch ons at a station in a specific 30 minute interval.  The area of the bubbles was proportional to the number of touch ons.
+
+![](/img/180921_next_stop_data2app/version3.JPG)
+
+One glaring ommission was data for the city centre.  This was because some stop locations had different identifiers between the dimension and the fact tables.  This was discussed by a few teams on Fleep and a team mentioned they had worked out a partial method using tram stops near train stops.  
+
+We also came up with a method.  It involved identifying neighbouring stops by the amount of time between touch on and touch off.  
+
+For example, South Yarra is next to Richmond.  Hence one can expect that Richmond is the stop where time difference is smallest.  Here is a chart of time to next touch event from South Yarra by stop_id in the touch data.  
+
+![](/img/180921_next_stop_data2app/neighbour_stops.png)
+
+So expect Richmond = 64405.  Also indicates that Flinders and Parliament are one of 64403, 64404.
+
+Using this method of deduction, we identify all the missing stations. 
+
+Then the missing stop information was released, thanks.  We checked and found that all our estimates were stop on - I mean, spot on :)
+
+Finally, our next version had bubbles in the city centre.
+
+![](/img/180921_next_stop_data2app/version4.png)
+
+Time to set off to our next station, we'll visit more stops along the Data2App journey.
+

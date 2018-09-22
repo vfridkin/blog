@@ -63,7 +63,7 @@ For example, South Yarra is next to Richmond.  Hence one can expect that Richmon
 
 So expect Richmond = 64405.  Also indicates that Flinders and Parliament are one of 64403, 64404.
 
-Using this method of deduction, we identify all the missing stations. 
+Using this method of deduction, we identified all the missing stations. 
 
 Then the missing stop information was released, thanks.  We checked and found that all our estimates were stop on - I mean, spot on :)
 

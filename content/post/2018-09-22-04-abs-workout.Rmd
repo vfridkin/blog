@@ -1,0 +1,117 @@
+---
+title: 04 ABS workout
+author: Vlad Fridkin
+date: '2018-09-22'
+slug: 04-abs-workout
+categories: []
+tags: []
+image: img/stronger_abs/census_balloon.jpg
+authorAvatar: img/vlad.png
+---
+
+Are you tough enough for this journey?  Want stronger ABS?  We added census data-packs to our lanky Data2App by visiting the [2016 Australian Bureau of Statistics data packs website](https://datapacks.censusdata.abs.gov.au/datapacks/).
+
+![](/img/stronger_abs/census_website.JPG)
+
+It's like a candy store for data geeks.  We picked four flavours
+
+- Plum Age
+- Blueberry Students
+- Mint Income
+- Marmalade Employment
+
+![](/img/stronger_abs/adtrek_abs.png)
+
+With these new flavours, users of our Data2App can cherry pick their stops according to passengers from neighbourhoods with above average age, higher proportions of students, higher income or higher rate of employment.  In each case, going higher means getting a darker colour.
+
+How does one cherry pick?  Ask EU about brexit - and in our Data2App one picks with mouse clicks.  
+
+![](/img/stronger_abs/suburb_click.JPG)
+
+Here I've picked Camberwell (unfortunately too late as it's unaffordable these day) and now that region gets surrounded by a blue wall.  Only stops in those blue walled regions show up in the results - the data is filtered on the selected regions - bubbles only show in those regions.
+
+Clicking again deselects as expected.  We decided picking all the regions that are highest income was a chore, so we added a delicious palette to the palate.
+
+![](/img/stronger_abs/bar_click.JPG)
+
+Now click the palette and all the suburbs in the same range of income are selected, et voila!
+
+![](/img/stronger_abs/all_click.JPG)
+
+Would you like some delicious ABS flavours too?  The data packs from ABS are not [tidy](http://vita.had.co.nz/papers/tidy-data.html), they are like a group of toddlers let loose on a candy jar.  
+
+Here's what the age data pack looks like in their downloaded state.
+
+![](/img/stronger_abs/abs_before.JPG)
+
+This is a small selection out of the total 307 columns for the age data.  So how to 'tidy' this up?
+
+R to the Rescue!
+
+Here is the after picture with all the columns showing.
+
+![](/img/stronger_abs/abs_after.JPG)
+
+This is the vegan protein mix that made it happen.
+
+```r
+library(tidyverse)
+
+abs_path <- './abs_data/2016/2016/VIC'
+
+file_name1 <- '2016Census_B04A_VIC_SA2_short.csv'
+file_name2 <- '2016Census_B04B_VIC_SA2_short.csv'
+
+df1 <- read_csv(str_c(abs_path, file_name1, sep = '/'))
+df2 <- read_csv(str_c(abs_path, file_name2, sep = '/'))
+
+# Join before mutating - more efficient
+df <- df1 %>% inner_join(df2)
+
+# Replace older years 
+my_cols <- names(df)
+for(right_age in seq.int(84, 99, by = 5)){
+  my_str <- str_c('_', right_age)  
+  my_cols <- str_replace_all(my_cols, my_str, "")
+}
+my_str <- '_yr_over'
+my_cols <- str_replace_all(my_cols, my_str, "")
+names(df) <- my_cols
+
+# Remove total columns          
+df <- df %>% 
+  select(-contains('_P')) %>% 
+  select(-matches('\\d\\_\\d')) %>%
+  select(-contains('Tot'))
+
+# Gather and seperate
+df <- df %>% 
+  gather("code", "value", 2:length(names(df))) %>%
+  mutate(code = str_replace(code, 'Age_yr_', '')) %>%
+  separate(code, c("age", "sex")) %>%
+  filter(value != 0)
+
+# Export 
+saveRDS(df, 'age.rds')
+```
+It seems we've lost our seat on the train during our monkey bars routine.  We'll get it back next time.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

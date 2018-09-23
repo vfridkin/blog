@@ -1,0 +1,99 @@
+---
+title: 04 ABS workout
+author: Vlad Fridkin
+date: '2018-09-22'
+slug: 04-abs-workout
+categories: []
+tags: []
+image: img/stronger_abs/census_balloon.jpg
+authorAvatar: img/vlad.png
+---
+
+
+
+<p>Are you tough enough for this journey? Want stronger ABS? We added census data-packs to our lanky Data2App by visiting the <a href="https://datapacks.censusdata.abs.gov.au/datapacks/">2016 Australian Bureau of Statistics data packs website</a>.</p>
+<div class="figure">
+<img src="/img/stronger_abs/census_website.JPG" />
+
+</div>
+<p>It’s like a candy store for data geeks. We picked four flavours</p>
+<ul>
+<li>Plum Age</li>
+<li>Blueberry Students</li>
+<li>Mint Income</li>
+<li>Marmalade Employment</li>
+</ul>
+<div class="figure">
+<img src="/img/stronger_abs/adtrek_abs.png" />
+
+</div>
+<p>With these new flavours, users of our Data2App can cherry pick their stops according to passengers from neighbourhoods with above average age, higher proportions of students, higher income or higher rate of employment. In each case, going higher means getting a darker colour.</p>
+<p>How does one cherry pick? Ask EU about brexit - and in our Data2App one picks with mouse clicks.</p>
+<div class="figure">
+<img src="/img/stronger_abs/suburb_click.JPG" />
+
+</div>
+<p>Here I’ve picked Camberwell (unfortunately too late as it’s unaffordable these day) and now that region gets surrounded by a blue wall. Only stops in those blue walled regions show up in the results - the data is filtered on the selected regions - bubbles only show in those regions.</p>
+<p>Clicking again deselects as expected. We decided picking all the regions that are highest income was a chore, so we added a delicious palette to the palate.</p>
+<div class="figure">
+<img src="/img/stronger_abs/bar_click.JPG" />
+
+</div>
+<p>Now click the palette and all the suburbs in the same range of income are selected, et voila!</p>
+<div class="figure">
+<img src="/img/stronger_abs/all_click.JPG" />
+
+</div>
+<p>Would you like some delicious ABS flavours too? The data packs from ABS are not <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy</a>, they are like a group of toddlers let loose on a candy jar.</p>
+<p>Here’s what the age data pack looks like in their downloaded state.</p>
+<div class="figure">
+<img src="/img/stronger_abs/abs_before.JPG" />
+
+</div>
+<p>This is a small selection out of the total 307 columns for the age data. So how to ‘tidy’ this up?</p>
+<p>R to the Rescue!</p>
+<p>Here is the after picture with all the columns showing.</p>
+<div class="figure">
+<img src="/img/stronger_abs/abs_after.JPG" />
+
+</div>
+<p>This is the vegan protein mix that made it happen.</p>
+<pre class="r"><code>library(tidyverse)
+
+abs_path &lt;- &#39;./abs_data/2016/2016/VIC&#39;
+
+file_name1 &lt;- &#39;2016Census_B04A_VIC_SA2_short.csv&#39;
+file_name2 &lt;- &#39;2016Census_B04B_VIC_SA2_short.csv&#39;
+
+df1 &lt;- read_csv(str_c(abs_path, file_name1, sep = &#39;/&#39;))
+df2 &lt;- read_csv(str_c(abs_path, file_name2, sep = &#39;/&#39;))
+
+# Join before mutating - more efficient
+df &lt;- df1 %&gt;% inner_join(df2)
+
+# Replace older years 
+my_cols &lt;- names(df)
+for(right_age in seq.int(84, 99, by = 5)){
+  my_str &lt;- str_c(&#39;_&#39;, right_age)  
+  my_cols &lt;- str_replace_all(my_cols, my_str, &quot;&quot;)
+}
+my_str &lt;- &#39;_yr_over&#39;
+my_cols &lt;- str_replace_all(my_cols, my_str, &quot;&quot;)
+names(df) &lt;- my_cols
+
+# Remove total columns          
+df &lt;- df %&gt;% 
+  select(-contains(&#39;_P&#39;)) %&gt;% 
+  select(-matches(&#39;\\d\\_\\d&#39;)) %&gt;%
+  select(-contains(&#39;Tot&#39;))
+
+# Gather and seperate
+df &lt;- df %&gt;% 
+  gather(&quot;code&quot;, &quot;value&quot;, 2:length(names(df))) %&gt;%
+  mutate(code = str_replace(code, &#39;Age_yr_&#39;, &#39;&#39;)) %&gt;%
+  separate(code, c(&quot;age&quot;, &quot;sex&quot;)) %&gt;%
+  filter(value != 0)
+
+# Export 
+saveRDS(df, &#39;age.rds&#39;)</code></pre>
+<p>It seems we’ve lost our seat on the train during our monkey bars routine. We’ll get it back next time.</p>

@@ -21,11 +21,11 @@ It's a lot easier driving when you're looking out the windscreen to see where yo
 
 - The best pitches had strong narratives
 
-Like Sergey Brin said after John Doerr's presentation of OKR's in 1999, “Well, we need to have some organizing principle. We don’t have one, and this might as well be it.”
+Like Sergey Brin said after John Doerr's presentation of OKRs in 1999, “Well, we need to have some organizing principle. We don’t have one, and this might as well be it.”
 
 That's why we had the Shark Tank at the start (see All aboard post), so we could identify the problem to solve and focus our analysis of the data towards solving that problem.  Other things we did included moving the data to an SQL database from the start, setting up a _research_ channel on Slack and assigning people to specific roles, including research, problem validation, MVP design and backend set up.
 
-It wasn't smooth sailing, we disagreed a lot.  Some times the person with the idea, which the team chose, later argued not to use the idea.  Disagreement is a great way to dig deeper to uncover assumptions and weaknesses.
+It wasn't smooth sailing and we disagreed a lot.  Sometimes the majority of the team agreed on an idea, then the person who brought up the idea changed their mind and we still went ahead with it.  Consensus may not always end up with the best solution, it's a risk we took.  Disagreement is a great way to dig deeper to uncover assumptions and weaknesses.
 
 ![Argument](/img/window_seat/Mocking_Bird_Argument.jpg)
 
@@ -37,7 +37,7 @@ After the MYKI data was released, we decided our problem would be determining wh
 
 New capabilities often bring new challenges.  With paper billboards, an advertiser may pay $6,000 (depending on location) for a month and hope for the best.  With digital billboards, an advertiser has the freedom, but also the challenge, to choose where to advertise potentially at any time.  This is the market gap we decided to take on with the MYKI data.
 
-This focussed our analysis of the data including
+This focused our analysis of the data including
 
 - determining which mode of transport had the most people per stop at any time (trains have 188 times more than bus, or 24 times more than tram)
 
